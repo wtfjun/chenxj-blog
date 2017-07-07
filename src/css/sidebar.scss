@@ -1,0 +1,53 @@
+#sidebar {
+    width: 280px;
+    position: fixed;
+    height: 100%;
+    margin-top: -15px;
+    margin-right: 20px;
+    padding-left: 25px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    overflow-y: scroll;
+    box-shadow: 0 0 40px #CCC;
+    -webkit-box-shadow: 0 0 40px #CCC;
+    -moz-box-shadow: 0 0 40px #CCC;
+    border-right: 1px solid #BBB;
+}
+
+#sidebar h1 a{
+  font-size: 25px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-family: Verdana, Arial;
+}
+
+#sidebar ol {
+    margin: 0;
+    padding-left: 30px;
+    padding-top: 0;
+    font-size: 13px;
+}
+
+#sidebar ol li {
+    margin-top: 0;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    padding: 0;
+    padding-left: 8px;
+    text-indent: -5px;
+}
+
+#sidebar ol li a {
+  font-size: 13px;
+  color: #4682BE;
+  font-size: 13px;
+}
+
+#content {
+  width: 100%;
+  padding-left: 320px;
+  height: 100%;
+}
