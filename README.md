@@ -1,6 +1,4 @@
-# chenxj's blog
-
-基于 ``github page`` 和 ``github api`` 搭建的单页面静态博客
+基于 ``github page`` 和 ``github api`` 搭建的单页面静态博客，页面风格仿照 ECMAScript 6 入门
 
 
 ```bash
@@ -16,7 +14,7 @@ $ npm -v
 ### 安装
 
 ``` bash
-$ cd cobish.github.io
+$ cd chenxj-blog
 $ npm install
 ```
 
@@ -24,7 +22,7 @@ $ npm install
 
 ``` js
 "scripts": {
-  "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --inline",
+  "dev": "cross-env NODE_ENV=development webpack-dev-server --host 127.0.0.1 --port 8080  --hot --inline",
   "build": "cross-env NODE_ENV=production webpack"
 },
 ```

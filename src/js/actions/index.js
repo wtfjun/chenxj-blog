@@ -16,7 +16,6 @@ export const fetchIssues = () => {
   NProgress.start()
   return dispatch => {
     let url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/issues`
-    url += `?creator=${CONFIG.owner}`
     return fetch(url)
       .then(response => response.json())
       .then(json => 
