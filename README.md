@@ -1,4 +1,6 @@
 基于 ``github page`` 和 ``github api`` 搭建的单页面静态博客，页面风格仿照 ECMAScript 6 入门
+
+
 线上地址：[极简风格个人博客](https://wtfjun.github.io/chenxj-blog)
 
 ```bash
