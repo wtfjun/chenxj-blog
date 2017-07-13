@@ -5,6 +5,8 @@
 
 开源代码请点击这里： [github地址](https://github.com/wtfjun/chenxj-blog) 
 
+线上地址：[极简风格个人博客](https://wtfjun.github.io/chenxj-blog)
+
 ```bash
 $ node -v
 v6.9.5
