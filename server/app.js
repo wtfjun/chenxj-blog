@@ -9,11 +9,10 @@ import mongoConnection from './db/connection';
 const app = new Koa();
 
 app
-   .use(parser())
-  .use(cors())
- 
+  .use(parser())
   .use(api(Router))
-  .use(routes(Router));
+  .use(routes(Router))
+  .use(cors());
   
   
 (async ()=>{
