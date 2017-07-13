@@ -106,8 +106,6 @@ export default function(Router) {
   router.post(
     '/getArts',
     async (ctx, next) => {
-      ctx.set('Cache-Control','no-cache');
-      ctx.set('Access-Control-Allow-Origin','*');
       const articles = await ArticleModel.find({}, ['_id', 'title', 'views'])
       ctx.body = { status: 1, msg: '成功获取', articles }
     }
