@@ -1,2 +1,4 @@
-// 接收issues
 export const RECEIVE_ISSUES = 'RECEIVE_ISSUES'
+export const GET_ARTICLES = 'GET_ARTICLES'
+export const GET_ARTICLE_BY_ID = 'GET_ARTICLE_BY_ID'
+export const DEL_ARTICLE_BY_ID = 'DEL_ARTICLE_BY_ID'

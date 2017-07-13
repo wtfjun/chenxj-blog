@@ -14,7 +14,16 @@
     border-right: 1px solid #BBB;
 }
 
+#sidebar p {
+  font-size: 14px;
+}
+#sidebar p a {
+  font-size: 14px;
+  text-decoration: none;
+}
+
 #sidebar h1 a{
+  padding-left: 27px;
   font-size: 25px;
   margin-bottom: 0px;
   padding-bottom: 0px;
@@ -22,6 +31,12 @@
   color: #000;
   font-weight: bold;
   font-family: Verdana, Arial;
+}
+
+#sidebar .re-button {
+  font-size: 12px;
+  margin-left: 85px;
+  text-decoration: none;
 }
 
 #sidebar ol {
@@ -44,6 +59,14 @@
   font-size: 13px;
   color: #4682BE;
   font-size: 13px;
+  cursor:pointer;
+}
+
+#sidebar .update-btn {
+  // color: #000;
+  font-size: 12px;
+  float: right;
+  margin-right: 15px;
 }
 
 #content {

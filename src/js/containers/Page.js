@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchIssues } from '../actions/index.js'
+import NProgress from 'nprogress'
+import { getArticles, getArticleById, delArticleById } from '../actions/index.js'
 import Sidebar from '../components/Sidebar.js'
 import Article from '../components/Article.js'
 
@@ -8,45 +9,74 @@ class Page extends React.Component {
   constructor(props) {
     super(props)
     this.state= {
-      content: ''
+      article: ''
     }
-    this.changeContent = this.changeContent.bind(this)
+    this.changeArticle = this.changeArticle.bind(this)
+    this.delArticle = this.delArticle.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchIssues())
+    NProgress.start()
+    dispatch(getArticles())
+      .then(() => {
+        const { _id } = this.props.articles[0]
+        dispatch(getArticleById(_id))
+          .then(() => {
+            NProgress.done()
+            this.setState({
+              article: this.props.article
+            })
+          })
+      })
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      content: nextProps.items[0]
-    })
+  changeArticle(_id) {
+    const { dispatch } = this.props
+    NProgress.start()
+    dispatch(getArticleById(_id))
+      .then(() => {
+        this.setState({
+          article: this.props.article
+        })
+      })
+      .then(dispatch(getArticles()))
+      .then(NProgress.done())
   }
 
-  changeContent(n) {
-    this.setState({
-      content: this.props.items[n]
-    })
+  delArticle(_id) {
+    const { dispatch } = this.props
+    NProgress.start()
+    dispatch(delArticleById(_id))
+      .then(() => {
+        NProgress.done()
+        this.setState({
+          article: this.props.articles[0]
+        })
+      })
   }
 
   render() {
-    let articles = []
-    this.props.items.map(o => {
-      articles.push({title: o.title, created_at: o.created_at})
-    })
+    const { articles } = this.props
+    const { article } = this.state
     return (
       <div>
-        <Sidebar articles={articles} changeContent={this.changeContent} />
-        <Article article={this.state.content} />
+
+        <Sidebar 
+          articles={articles} 
+          changeArticle={this.changeArticle} 
+          delArticleById={ (_id) => this.delArticle(_id) } 
+        />
+
+        <Article article={article} />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  const { isFetching, items } = state || { isFetching: true, items: [] }
-  return { isFetching, items }
+  const { isFetching, items, articles, article } = state || { isFetching: true, items: [], articles: [] }
+  return { isFetching, items, articles, article }
 }
 
 export default connect(mapStateToProps)(Page)

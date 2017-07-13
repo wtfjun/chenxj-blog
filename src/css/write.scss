@@ -1,0 +1,53 @@
+#write {
+  height: 100%;
+  min-width: 1000px;
+}
+#write .left {
+  width: 49%;
+  height: 100%;
+  float: left;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  border-right: 1px solid #ebebeb;
+}
+#write .left .title {
+  width: 99.2%;
+  height: 40px;
+  text-align: center;
+  border: none;
+}
+#write .left textarea {
+  width: 99%;
+  height: 100%;
+  line-height: 20px;
+  border: none;
+}
+#write .right {
+  // padding: 15px;
+  width: 50%;
+  float: left;
+  overflow-y: scroll;
+}
+
+#write .right img {
+  width: 100%;
+}
+
+#write .right-article {
+  padding: 30px;
+}
+
+#write .send-btn {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -58px;
+  background: #3194d0;
+  width: 100px;
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 30px;
+}

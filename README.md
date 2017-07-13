@@ -1,5 +1,9 @@
-基于 ``github page`` 和 ``github api`` 搭建的单页面静态博客，页面风格仿照 ECMAScript 6 入门
+基于 ``koa`` 和 ``react`` 搭建的个人博客，风格仿照 [【ECMAScript 6 入门】]((http://es6.ruanyifeng.com/)
 
+基于前后端分离的思想，后端提供接口，前端调用
+
+
+开源代码请点击这里： [github地址](https://github.com/wtfjun/chenxj-blog) 
 
 ```bash
 $ node -v
@@ -11,21 +15,21 @@ $ npm -v
 
 ## 命令使用
 
-### 安装
+### 安装 && 运行
 
 ``` bash
 $ cd chenxj-blog
-$ npm install
+$ npm install // src包安装
+
+$ cd server
+$ npm install // 后台包安装
+
+$ node run // 启动后台
+$ cd ../
+$ npm run dev // 启动前端
 ```
 
-### 运行
 
-``` js
-"scripts": {
-  "dev": "cross-env NODE_ENV=development webpack-dev-server --host 127.0.0.1 --port 8080  --hot --inline",
-  "build": "cross-env NODE_ENV=production webpack"
-},
-```
 
 #### 命令
 
@@ -39,11 +43,18 @@ $ npm run build
 
 ## 技术栈
 
+前端：
 - react@15.3.1
 - react-router@3.0.5
 - redux@3.6.0
 - webpack@1.13.2
 - es6
+
+后台：
+- koa@2.0.0-alpha.8
+- mongoose@4.11.1
+- asyn/await
+
 
 ## 浏览器兼容
 

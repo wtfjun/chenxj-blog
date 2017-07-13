@@ -97,7 +97,7 @@ function getPlugins() {
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor', isProd() ? 'vendor.[chunkhash:8].js' : 'vendor.js'),
     new ExtractTextPlugin(isProd() ? '[name].[chunkhash:8].css' : '[name].css'),
-  ];
+  ]
 
   if (isDev()) {
     plugins.push(
