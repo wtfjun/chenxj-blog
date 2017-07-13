@@ -3,5 +3,4 @@
 
 # Node modules
 node_modules
-express.js
 *.log
