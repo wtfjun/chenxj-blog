@@ -4,5 +4,5 @@ export const CONFIG = {
   repo       : 'chenxj-blog',
   title      : 'chenxj-一个极简的技术博客',
   titleLoad  : '正在加载...',
-  server     : 'http://127.0.0.1:3000'
+  server     : 'http://127.0.0.1:3010'
 }

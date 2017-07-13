@@ -3,4 +3,6 @@
 
 # Node modules
 node_modules
+dist
+express.js
 *.log
