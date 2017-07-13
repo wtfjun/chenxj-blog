@@ -6,4 +6,4 @@ var server = require('http').createServer(app);
 app.use('/', express.static(__dirname + '/')); 
 
 //监听端口号
-server.listen(4010);
+server.listen(4011);
