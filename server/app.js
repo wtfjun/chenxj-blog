@@ -4,26 +4,20 @@ import parser from 'koa-bodyparser';
 import cors from 'koa-cors'
 import api from './routes/api'
 import routes from './routes/index'
-import mongoConnection from './db/connection';
+import mongoConnection from './db/connection'
 
-const app = new Koa();
+const app = new Koa()
 
 app
-   .use(parser())
+  .use(parser())
   .use(cors())
  
   .use(api(Router))
-  .use(routes(Router));
+  .use(routes(Router))
   
   
-(async ()=>{
-  try {
-    await mongoConnection();
-  } catch (e) {
-    console.error('ERROR:', e);
-    return;
-  }
-  app.listen(3010, '127.0.0.1', ()=>{
-    console.log('server listen');
-  });
-})();
+mongoConnection()
+
+app.listen(3010, '127.0.0.1', ()=>{
+  console.log('server listen')
+})
