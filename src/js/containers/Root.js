@@ -42,7 +42,7 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Page} />
     <Route path="login" getComponent={Login} />
-    <Route path="signup" getComponent={Signup} />
+    {/*<Route path="signup" getComponent={Signup} />*/}
     <Route path="write/:id" getComponent={Write} />
   </Route>
 )
