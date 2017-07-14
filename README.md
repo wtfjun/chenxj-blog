@@ -1,11 +1,11 @@
-基于 ``koa`` 和 ``react`` 搭建的个人博客，风格仿照 [【ECMAScript 6 入门】]((http://es6.ruanyifeng.com/)
+基于 ``koa`` 和 ``react`` 搭建的个人博客，风格仿照 [【ECMAScript 6 入门】](http://es6.ruanyifeng.com/)
 
 基于前后端分离的思想，后端提供接口，前端调用
 
 
 开源代码请点击这里： [github地址](https://github.com/wtfjun/chenxj-blog) 
 
-线上地址：[极简风格个人博客](https://wtfjun.github.io/chenxj-blog)
+线上地址：[极简风格个人博客](http://47.52.5.137:4011/#/)
 
 ```bash
 $ node -v
