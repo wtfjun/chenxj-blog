@@ -38,23 +38,32 @@ export default class Login extends React.Component {
   render() {
     return (
       <div id="login">
-        <span>用户名：</span>
+        <h3>注册</h3>
         
-        <input 
-          type="text" 
-          name="username"
-          ref={(input) => { this.usernameInput = input }} 
-        />
+        <div className="input-prepend">
+          <input 
+            className="input-top"
+            type="text" 
+            name="username"
+            placeholder="用户名"
+            ref={(input) => { this.usernameInput = input }} 
+          />
+        </div>
+          
+        <div className="input-prepend">  
+          <input 
+            className="input-bottom"
+            type="text" 
+            name="password"
+            placeholder="密码"
+            ref={(input) => { this.passwordInput = input }} 
+          />
+        </div>
 
-        <span>密码：</span>
-        
-        <input 
-          type="text" 
-          name="password"
-          ref={(input) => { this.passwordInput = input }} 
-        />
-
-        <button onClick={ ()=> this.signupAction() }>确定</button>
+        <button 
+          className="login-btn"
+          onClick={ ()=> this.signupAction() }
+        >确定</button>
       </div>
     )
   }

@@ -22,6 +22,13 @@ const Login = (location, cb) => {
     cb(null, require('../components/Login.js').default)
   }, 'login')
 }
+const Signup = (location, cb) => {
+  // document.title = CONFIG.titleLoad;
+  NProgress.start()
+  require.ensure([], require => {
+    cb(null, require('../components/Signup.js').default)
+  }, 'login')
+}
 
 const Write = (location, cb) => {
   // document.title = CONFIG.titleLoad;
@@ -35,6 +42,7 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Page} />
     <Route path="login" getComponent={Login} />
+    <Route path="signup" getComponent={Signup} />
     <Route path="write/:id" getComponent={Write} />
   </Route>
 )
