@@ -22,7 +22,7 @@ app
     console.error('ERROR:', e);
     return;
   }
-  app.listen(3011, '127.0.0.1', ()=>{
-    console.log('127.0.0.1: 3011 server listen');
+  app.listen(3011, '47.52.5.137', ()=>{
+    console.log('47.52.5.137: 3011 server listen');
   });
 })();
