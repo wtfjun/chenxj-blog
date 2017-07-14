@@ -64,7 +64,7 @@ export default class Login extends React.Component {
         <div className="input-prepend">  
           <input 
             className="input-bottom"
-            type="text" 
+            type="password" 
             name="password"
             placeholder="密码"
             ref={(input) => { this.passwordInput = input }} 
