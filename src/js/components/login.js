@@ -38,6 +38,7 @@ export default class Login extends React.Component {
         if(data.status === 1) {
           console.log( data )
           sessionStorage.setItem('__token__', data.token)
+          sessionStorage.setItem('__username__', data.username)
           appHistory.push('/')
         }
         else {
@@ -75,6 +76,7 @@ export default class Login extends React.Component {
           className="login-btn"
           onClick={ ()=> this.signupAction() }
         >确定</button>
+        <p>游客登陆体验账号：visitor 密码：visitor</p>
       </div>
     )
   }

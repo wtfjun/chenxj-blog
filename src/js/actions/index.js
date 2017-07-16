@@ -53,7 +53,7 @@ export const delArticleById = (_id) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       mode: 'cors',
-      body: JSON.stringify({ _id })
+      body: JSON.stringify({ _id, token: sessionStorage.getItem('__token__') })
     })
       .then(response => response.json())
       .then(data => {
@@ -67,7 +67,7 @@ export const delArticleById = (_id) => {
 }
 
 // 发布文章
-export const sendArticle = (_id, title, content) => {
+export const sendArticle = (_id, title, content, token) => {
   const url = `${CONFIG.server}/api/post`
   return fetch(url, {
     method: 'POST',
@@ -78,7 +78,8 @@ export const sendArticle = (_id, title, content) => {
     body: JSON.stringify({
       _id,
       title,
-      content
+      content,
+      token
     }),
     mode: 'cors'
   })

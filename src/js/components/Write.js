@@ -44,8 +44,9 @@ class Write extends React.Component {
   sendArticle() {
     const _id = this.props.params.id,
       title = this.titleInput.value,
-      content = this.state.write 
-    sendArticle(_id, title, content)
+      content = this.state.write,
+      token = sessionStorage.getItem('__token__')
+    sendArticle(_id, title, content, token)
       .then(() => {
         appHistory.push('/')
       }) 
