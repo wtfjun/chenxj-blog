@@ -20,9 +20,11 @@
     "koa-route": "^3.2.0",
     "koa-router": "^7.1.1",
     "koa-views": "^5.2.1",
-    "koa2-cors": "^2.0.3"
+    "koa2-cors": "^2.0.3",
+    "mongoose": "^4.11.3"
   },
   "devDependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.24.1"
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
