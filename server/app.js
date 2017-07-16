@@ -23,7 +23,7 @@ app
     return;
   }
   // 服务器部署需要写上服务器ip，不能localhost
-  app.listen(3011, '127.0.0.1', ()=>{
+  app.listen(3011, '47.52.5.137', ()=>{
     console.log('47.52.5.137: 3011 server listen');
   });
 })();
