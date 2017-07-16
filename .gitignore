@@ -2,6 +2,6 @@
 .DS_Store
 
 # Node modules
-# node_modules
-# express.js
+node_modules
+express.js
 *.log
