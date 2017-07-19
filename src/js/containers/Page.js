@@ -2,8 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import NProgress from 'nprogress'
 import { getArticles, getArticleById, delArticleById } from '../actions/index.js'
+import { useRouterHistory } from 'react-router'
+import { createHashHistory } from 'history'
 import Sidebar from '../components/Sidebar.js'
 import Article from '../components/Article.js'
+
+const appHistory = useRouterHistory(createHashHistory)()
 
 class Page extends React.Component {
   constructor(props) {
@@ -20,7 +24,7 @@ class Page extends React.Component {
     NProgress.start()
     dispatch(getArticles())
       .then(() => {
-        const { _id } = this.props.articles[0]
+        const _id = this.props.location.query.id || this.props.articles[0]._id
         dispatch(getArticleById(_id))
           .then(() => {
             NProgress.done()
@@ -33,6 +37,7 @@ class Page extends React.Component {
 
   changeArticle(_id) {
     const { dispatch } = this.props
+    appHistory.push(`/?id=${_id}`)
     NProgress.start()
     dispatch(getArticleById(_id))
       .then(() => {
