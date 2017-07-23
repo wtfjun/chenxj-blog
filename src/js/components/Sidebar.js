@@ -25,7 +25,7 @@ export default class Sidebar extends React.Component {
               {sessionStorage.getItem('__token__') && (sessionStorage.getItem('__username__') === 'admin' || o._id === '596b82bf53ffbb470071f7d9' || o._id === '596b853dc647a3cdfa5849b8') &&
               <Link to={`/write/${o._id}`} className="update-btn">改</Link>
               }
-              {/*<a onClick={() => delArticleById(o._id)} className="update-btn">删</a>*/}
+              <a onClick={() => delArticleById(o._id)} className="update-btn">删</a>
             </li>
           )}
         </ol>

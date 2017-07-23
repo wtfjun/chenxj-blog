@@ -83,7 +83,7 @@ export default function(Router) {
   router.post(
     '/post', 
     async (ctx, next) => {
-      const { _id, title, content, token } = ctx.request.body
+      const { _id, create_time, title, content, token } = ctx.request.body
       try {
         const decoded = jwt.verify(token, 'secret')
         // 不是admin，没有发文章的权限
@@ -96,11 +96,11 @@ export default function(Router) {
               await article.save()
               ctx.body = { status: 1, msg: '更新成功' }
             } else {
-              await ArticleModel({ title, content, create_time: Date.now() }).save()
+              await ArticleModel({ title, content, create_time }).save()
               ctx.body = { status: 1, msg: '成功发布' }
             }
           } catch(e) {
-            await ArticleModel({ title, content, create_time: Date.now() }).save()
+            await ArticleModel({ title, content, create_time }).save()
             ctx.body = { status: 1, msg: '成功发布' }
           } 
         } else {
