@@ -77,7 +77,7 @@ export const sendArticle = (_id, title, content, token) => {
     },
     body: JSON.stringify({
       _id,
-      create_time: Date.new(),
+      create_time: Date.now(),
       title,
       content,
       token
