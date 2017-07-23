@@ -96,11 +96,11 @@ export default function(Router) {
               await article.save()
               ctx.body = { status: 1, msg: '更新成功' }
             } else {
-              await ArticleModel({ title, content }).save()
+              await ArticleModel({ title, content, create_time: Date.now() }).save()
               ctx.body = { status: 1, msg: '成功发布' }
             }
           } catch(e) {
-            await ArticleModel({ title, content }).save()
+            await ArticleModel({ title, content, create_time: Date.now() }).save()
             ctx.body = { status: 1, msg: '成功发布' }
           } 
         } else {
