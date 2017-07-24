@@ -29,7 +29,7 @@ class Write extends React.Component {
     dispatch(getArticleById(id))
       .then(() => {
         document.querySelector('.title').value = this.props.article.title
-        document.querySelector('#sort').value = this.props.article.sort
+        document.querySelector('#sort') && (document.querySelector('#sort').value = this.props.article.sort)
         this.setState({ 
           height: window.innerHeight||document.body.clientHeight||document.documentElement.clientHeight,
           write: this.props.article.content
@@ -45,7 +45,7 @@ class Write extends React.Component {
   sendArticle() {
     let sort
     const _id = this.props.params.id,
-      title = this.titleInput.value,
+      title = document.querySelector('.title').value,
       content = this.state.write,
       token = sessionStorage.getItem('__token__')
     if(sessionStorage.getItem('__token__') && sessionStorage.getItem('__username__') === 'admin') {
