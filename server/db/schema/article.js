@@ -11,6 +11,7 @@ import mongoose, { Schema } from 'mongoose'
  * */
 
 const ArticleSchema = new Schema({
+  sort: String,
   title: String,
   content: String,
   views: {

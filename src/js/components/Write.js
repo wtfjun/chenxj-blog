@@ -5,7 +5,7 @@ import fetch from 'isomorphic-fetch'
 import { useRouterHistory } from 'react-router'
 import { createHashHistory } from 'history'
 import { connect } from 'react-redux'
-import { getArticleById, sendArticle } from '../actions/index.js'
+import { getArticlesBySort, getArticleById, sendArticle, sendArticleByVisitor } from '../actions/index.js'
 import { CONFIG } from '../constants/Config.js'
 import { verifyJWT } from '../constants/Verify.js'
 
@@ -21,14 +21,15 @@ class Write extends React.Component {
   }
 
   componentDidMount() {
-    // 登陆验证
-    verifyJWT()
+    // 登陆验证（添加游客留言功能后该验证取消）
+    // verifyJWT()
     const { dispatch } = this.props
     const { id } = this.props.params
     // 得到当前文章信息
     dispatch(getArticleById(id))
       .then(() => {
-        this.titleInput.value = this.props.article.title
+        document.querySelector('.title').value = this.props.article.title
+        document.querySelector('#sort').value = this.props.article.sort
         this.setState({ 
           height: window.innerHeight||document.body.clientHeight||document.documentElement.clientHeight,
           write: this.props.article.content
@@ -42,14 +43,27 @@ class Write extends React.Component {
   }
 
   sendArticle() {
+    let sort
     const _id = this.props.params.id,
       title = this.titleInput.value,
       content = this.state.write,
       token = sessionStorage.getItem('__token__')
-    sendArticle(_id, title, content, token)
-      .then(() => {
-        appHistory.push('/')
-      }) 
+    if(sessionStorage.getItem('__token__') && sessionStorage.getItem('__username__') === 'admin') {
+      // 管理员发文章
+      sort = document.querySelector('#sort').value
+      sendArticle(_id, sort, title, content, token)
+        .then(() => {
+          appHistory.push(`/?id=${_id}`)
+        }) 
+    } else {
+      // 游客发文章
+      sort = 'visitor'
+      sendArticleByVisitor(title, content)
+        .then(() => {
+          appHistory.push('/?sort=visitor')
+        }) 
+    }
+   
   }
 
   render() {
@@ -60,9 +74,18 @@ class Write extends React.Component {
           <input  
             type="text"
             className="title"
-            defaultValue=""
-            ref={(input) => { this.titleInput = input }}
           />
+
+          {(sessionStorage.getItem('__token__') && sessionStorage.getItem('__username__') === 'admin') &&
+            <select name="sort" id="sort" className="sort">
+              <option value="js">JavaScript</option>
+              <option value="react">react</option>
+              <option value="algorithm">算法</option>
+              <option value="http">http</option>
+              <option value="life">随笔</option>
+              <option value="visitor">游客留言</option>
+            </select>
+          }
 
           <textarea 
             spellCheck="false"

@@ -76,7 +76,7 @@ export default class Login extends React.Component {
           className="login-btn"
           onClick={ ()=> this.signupAction() }
         >确定</button>
-        <p>游客账号：visitor 密码：visitor</p>
+        <p>只有管理员才有权限登陆～</p>
       </div>
     )
   }

@@ -3,6 +3,7 @@
   min-width: 1000px;
 }
 #write .left {
+  position: relative;
   width: 49%;
   height: 100%;
   float: left;
@@ -15,6 +16,11 @@
   height: 40px;
   text-align: center;
   border: none;
+}
+#write .left .sort {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 #write .left textarea {
   width: 99%;

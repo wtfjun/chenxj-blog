@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import NProgress from 'nprogress'
-import { getArticles, getArticleById, delArticleById } from '../actions/index.js'
+import { getArticlesBySort, getArticleById, delArticleById } from '../actions/index.js'
 import { useRouterHistory } from 'react-router'
 import { createHashHistory } from 'history'
 import Sidebar from '../components/Sidebar.js'
@@ -21,8 +21,12 @@ class Page extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props
+    let sort = 'all'
     NProgress.start()
-    dispatch(getArticles())
+    if(this.props.location.query.sort === 'visitor') {
+      sort = 'visitor'
+    }
+    dispatch(getArticlesBySort(sort))
       .then(() => {
         const _id = this.props.location.query.id || this.props.articles[0]._id
         dispatch(getArticleById(_id))
@@ -36,7 +40,8 @@ class Page extends React.Component {
   }
 
   changeArticle(_id) {
-    const { dispatch } = this.props
+    const { dispatch, sort } = this.props
+
     appHistory.push(`/?id=${_id}`)
     NProgress.start()
     dispatch(getArticleById(_id))
@@ -45,7 +50,7 @@ class Page extends React.Component {
           article: this.props.article
         })
       })
-      .then(dispatch(getArticles()))
+      .then(dispatch(getArticlesBySort(sort)))
       .then(NProgress.done())
   }
 
@@ -64,11 +69,13 @@ class Page extends React.Component {
   render() {
     const { articles } = this.props
     const { article } = this.state
+    const { sort } = this.props.location.query
     return (
       <div>
 
         <Sidebar 
           articles={articles} 
+          sort={sort}
           changeArticle={this.changeArticle} 
           delArticleById={ (_id) => this.delArticle(_id) } 
         />
@@ -80,8 +87,19 @@ class Page extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { isFetching, items, articles, article } = state || { isFetching: true, items: [], articles: [] }
-  return { isFetching, items, articles, article }
+  const { 
+    isFetching, 
+    items, 
+    articles, 
+    article, 
+    sort 
+  } = state || { 
+      isFetching: true, 
+      items: [], 
+      articles: [], 
+      sort: 'all' 
+    }
+  return { isFetching, items, articles, article, sort }
 }
 
 export default connect(mapStateToProps)(Page)

@@ -8,7 +8,8 @@ export default (defaultIssuesState, action) => {
   case GET_ARTICLES:
     return Object.assign({}, defaultIssuesState, {
       isFetching: false,
-      articles: action.articles
+      articles: action.articles,
+      sort: action.sort
     })
 
   case GET_ARTICLE_BY_ID:

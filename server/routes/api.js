@@ -83,24 +83,28 @@ export default function(Router) {
   router.post(
     '/post', 
     async (ctx, next) => {
-      const { _id, create_time, title, content, token } = ctx.request.body
+      const { _id, create_time, title, sort, content, token } = ctx.request.body
       try {
         const decoded = jwt.verify(token, 'secret')
         // 不是admin，没有发文章的权限
-        if(decoded.name === 'admin' || _id === '596b82bf53ffbb470071f7d9' || _id === '596b853dc647a3cdfa5849b8') {
+        if(decoded.name === 'admin') {
           try {
             const article = await ArticleModel.findOne({ _id }).exec()
             if(article) {
               article.title = title
               article.content = content
+              article.sort = sort
               await article.save()
-              ctx.body = { status: 1, msg: '更新成功' }
+              ctx.body = { 
+                status: 1, 
+                msg: '更新成功' 
+              }
             } else {
-              await ArticleModel({ title, content, create_time }).save()
+              await ArticleModel({ title, sort, content, create_time }).save()
               ctx.body = { status: 1, msg: '成功发布' }
             }
           } catch(e) {
-            await ArticleModel({ title, content, create_time }).save()
+            await ArticleModel({ title, sort, content, create_time }).save()
             ctx.body = { status: 1, msg: '成功发布' }
           } 
         } else {
@@ -112,12 +116,66 @@ export default function(Router) {
     }
   )
 
-  // 获取文章标题，id
+  // 游客不需要登陆可以在【游客吐槽】模块发文章
+  router.post(
+    '/postByVisitor',
+    async (ctx, next) => {
+      const { _id, create_time, title, content } = ctx.request.body
+      try {
+        try {
+          const article = await ArticleModel.findOne({ _id }).exec()
+          if(article) {
+            article.title = title
+            article.content = content
+            await article.save()
+            ctx.body = { 
+              status: 1, 
+              msg: '更新成功' 
+            }
+          } else {
+            await ArticleModel({ 
+              title, 
+              sort: 'visitor', 
+              content, 
+              create_time 
+            }).save()
+            ctx.body = { 
+              status: 1, 
+              msg: '成功发布' 
+            }
+          }
+        } catch(e) {
+
+          await ArticleModel({ 
+            title, 
+            sort: 'visitor', 
+            content, 
+            create_time 
+          }).save()
+
+          ctx.body = { 
+            status: 1,
+            msg: '成功发布' 
+          }
+        } 
+      } catch(e) {
+        ctx.body = { status: 0, msg: e.message }
+      }
+    }
+  )
+
+  // 根据分类获取文章标题，id
   router.post(
     '/getArts',
     async (ctx, next) => {
-      const articles = await ArticleModel.find({}, ['_id', 'title', 'views'])
-      ctx.body = { status: 1, msg: '成功获取', articles }
+      const { sort } = ctx.request.body
+      if(sort === 'all' || sort === 'undefined') {
+        const articles = await ArticleModel.find({'sort': { '$ne': 'visitor' }}, ['_id', 'title', 'sort', 'views'])
+        ctx.body = { status: 1, msg: '成功获取', articles }
+      } else {
+        const articles = await ArticleModel.find({ sort }, ['_id', 'title', 'sort', 'views'])
+        ctx.body = { status: 1, msg: '成功获取', articles }
+      }
     }
   )
 

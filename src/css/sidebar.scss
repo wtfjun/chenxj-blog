@@ -22,7 +22,7 @@
   text-decoration: none;
 }
 
-#sidebar h1 a{
+#sidebar h1 a {
   padding-left: 27px;
   font-size: 25px;
   margin-bottom: 0px;
@@ -33,10 +33,53 @@
   font-family: Verdana, Arial;
 }
 
+#sidebar .class {
+  // height: 18px;
+}
+#sidebar .class span {
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 5px;
+  background: #AAA;
+  color: #fff;
+  border-radius: 2px;
+  padding: 0px 5px;
+  line-height: 18px;
+  min-width: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#sidebar .class span:hover {
+  background: #4682BE;
+}
+
+#sidebar .class .selected {
+  background: #4682BE;
+}
+
 #sidebar .re-button {
   font-size: 12px;
   margin-left: 85px;
   text-decoration: none;
+}
+
+#sidebar .visitor_post_btn {
+  font-size: 12px;
+  margin-left: 0px;
+  background: #AAA;
+  color: #fff;
+  border-radius: 2px;
+  padding: 0px 5px;
+  line-height: 18px;
+  min-width: 15px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#sidebar .visitor_post_btn:hover {
+  background: #4682BE;
 }
 
 #sidebar ol {
